@@ -4,21 +4,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./assets/css/order.css">
     <title>ثبت سفارش | کاربر</title>
 </head>
 
 <body>
-
-    <div class="content-main">
-        <button class="btn-title" id="deser">دسر</button>
-        <button class="btn-title" id="foodmain">غذای اصلی</button>
-        <button class="btn-title" id="drink">نوشیدنی</button>
+    <!-- هدر -->
+    <header id="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="header-top-right">
+                    <button class="icon-btn" id="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="icon-btn" id="previous-orders">
+                        <i class="fas fa-history"></i>
+                    </button>
+                </div>
+                <!-- زیر هدر -->
+                <h1 id="h1">منوی ثبت سفارش غذا</h1>
+                <div class="header-top-left">
+                    <span id="user-name">نام کاربری</span>
+                    <button class="icon-btn" id="edit-profile">
+                        <i class="fas fa-user-edit"></i>
+                    </button>
+                    <button class="icon-btn" id="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- خط بین هدر -->
+            <div class="header-divider"></div>
+            <div class="header-bottom">
+                <button class="btn-title" id="desert">دسر</button>
+                <button class="btn-title" id="main-food">غذای اصلی</button>
+                <button class="btn-title" id="drink">نوشیدنی</button>
+                <button class="btn-title active" id="all-categories">همه</button>
+            </div>
+        </div>
+    </header>
+    <!-- محتوا -->
+    <main class="main-content container">
+        <div class="content-wrapper">
+            <div class="main-section">
+                <!-- دسته بندی محصولات -->
+                <div class="category-selector">
+                    <select id="category-filter" class="btn-title btn-secondary">
+                        <option value="all">همه دسته‌بندی‌ها</option>
+                        <option value="desert">دسر</option>
+                        <option value="main-food">غذای اصلی</option>
+                        <option value="drink">نوشیدنی</option>
+                    </select>
+                </div>
+                <div class="food-list" id="food-list">
+                    <!-- نمایش لیست محصولات -->
+                </div>
+                <div class="order-summary">
+                    <span>مجموع:</span>
+                    <span class="total-price" id="total-price">0 تومان</span>
+                </div>
+            </div>
+            <!-- نمایش لیست سفارشات -->
+            <aside class="order-sidebar" id="order-sidebar">
+                <div class="sidebar-header">
+                    <h3>سفارش‌های شما</h3>
+                    <button class="icon-btn" id="close-sidebar">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="sidebar-content">
+                    <div class="order-category-sidebar">
+                        <h4 class="category-title-sidebar">
+                            <i class="fas fa-utensils"></i>
+                            غذای اصلی
+                        </h4>
+                        <div class="order-items" id="sidebar-main-food">
+                            <!-- غذای های اصلی -->
+                        </div>
+                    </div>
+                    <div class="order-category-sidebar">
+                        <h4 class="category-title-sidebar">
+                            <i class="fas fa-ice-cream"></i>
+                            دسر
+                        </h4>
+                        <div class="order-items" id="sidebar-desert">
+                            <!-- دسر ها-->
+                        </div>
+                    </div>
+                    <div class="order-category-sidebar">
+                        <h4 class="category-title-sidebar">
+                            <i class="fas fa-glass-whiskey"></i>
+                            نوشیدنی
+                        </h4>
+                        <div class="order-items" id="sidebar-drink">
+                            <!-- نوشیدنی ها -->
+                        </div>
+                    </div>
+                    <!-- محل نشان دادن سبد خرید -->
+                    <div class="empty-cart" id="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>سبد خرید شما خالی است</p>
+                    </div>
+                </div>
+                <!-- فوتر سایدر بار -->
+                <div class="sidebar-footer">
+                    <div class="sidebar-total">
+                        <span>جمع کل:</span>
+                        <span class="sidebar-total-price" id="sidebar-total-price">0 تومان</span>
+                    </div>
+                    <button class="btn-title submit-order" id="submit-order">
+                        <i class="fas fa-paper-plane"></i>
+                        ثبت سفارش
+                    </button>
+                </div>
+            </aside>
+        </div>
+        <!-- نمایش کانتنت-->
+        <button class="floating-cart-btn" id="floating-cart-btn">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge" id="cart-badge">0</span>
+        </button>
+    </main>
+    <!--نمایش هیستوری-->
+    <div class="modal" id="previous-orders-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">سفارش‌های قبلی</h2>
+                <button class="close-modal" id="close-modal">&times;</button>
+            </div>
+            <div class="order-category">
+                <h3 class="category-title">غذای اصلی</h3>
+                <ul id="previous-main-food">
+                    <!-- سفارش‌های قبلی غذای اصلی -->
+                </ul>
+            </div>
+            <div class="order-category">
+                <h3 class="category-title">دسر</h3>
+                <ul id="previous-desert">
+                    <!-- سفارش‌های قبلی دسر -->
+                </ul>
+            </div>
+            <div class="order-category">
+                <h3 class="category-title">نوشیدنی</h3>
+                <ul id="previous-drink">
+                    <!-- سفارش‌های قبلی نوشیدنی -->
+                </ul>
+            </div>
+        </div>
     </div>
-
-
-
-    <script src="./FrontEnd/assets/js/order.js"></script>
+    <!-- فوتر -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">شرکت بتن سازی</div>
+                    <div class="footer-contact">
+                        <i class="fas fa-phone"></i>
+                        <button id="button-copy1">
+                            شماره تلفن شرکت
+                        </button>
+                    </div>
+                    <div class="footer-contact">
+                        <i class="fas fa-envelope"></i>
+                        <button id="button-copy2">
+                            ایمیل شرکت
+                        </button>
+                    </div>
+                </div>
+                <div class="footer-section footer-center">
+                    <div class="footer-title">ساخته شده توسط تیم مهر وطن</div>
+                    <div class="footer-contact">
+                        <i class="fas fa-phone"></i>
+                        <button id="button-copy3">
+                            0933-555-4105
+                        </button>
+                    </div>
+                    <div class="footer-contact">
+                        <i class="fas fa-phone"></i>
+                        <button id="button-copy4">
+                            0901-722-8567
+                        </button>
+                    </div>
+                    <div class="footer-contact">
+                        <i class="fas fa-envelope"></i>
+                        <button class="button-email-3" id="button-copy5">
+                            code.mehrvatan@gmail.com
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div style="text-align: center; margin-top: 20px;">
+                <p>تمامی حقوق محفوظ است © ۱۴۰۴ تیم مهروطن</p>
+            </div>
+        </div>
+    </footer>
+    <script src="./assets/js/order.js"></script>
 </body>
 
 </html>
