@@ -548,6 +548,47 @@ footer {
   background-color: var(--input-border);
   margin: 20px 0;
 }
+/* حاشیه rgb */
+.footerrgb {
+  position: relative;
+  border-radius: 2rem 0 0 0 !important;
+}
+@property --backgb {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.footerrgb1::before,
+.footerrgb1::after {
+  content: "";
+  position: absolute;
+  width: 99.5%;
+  height: 90%;
+  background-color: #fff;
+  top: 50%;
+  left: 50%;
+  border-radius: 2rem;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  animation: colorgb 3s linear infinite;
+  /*چند رنگ */
+  background: conic-gradient(from var(--backgb), #ff9100, #57c785, #3987ed, #e317a6, #ff9100);
+  /* تک رنگ */
+  /* background: conic-gradient(from var(--backgb), transparent 80%, var(--accent)); */
+}
+.footerrgb1::after {
+  filter: blur(2rem);
+}
+@keyframes colorgb {
+  from {
+    --backgb: 0deg;
+    padding: 9px;
+  }
+  to {
+    --backgb: 360deg;
+    padding: 7px;
+  }
+}
 /* ریسپانسیو */
 @media (max-width: 1024px) {
   .content-wrapper {
